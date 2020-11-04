@@ -4,37 +4,37 @@
 <div class="container">
     <div class="row">
         <div class="col-xl">
-            <h1>Listado de Articulos</h1>
-            <a href="{{ route('articulo.create') }}" class="btn btn-primary">Nuevo Articulo</a>
-            @if ($productos->isEmpty())
+            <h1>Listado de Personas</h1>
+            <a href="{{ route('persona.create') }}" class="btn btn-primary">Nuevo Articulo</a>
+            @if ($personas->isEmpty())
                 <div>No hay Datos</div>
             @else
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Codigo</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Lote</th>
-                        <th scope="col">Vencimiento</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Fecha Nacimiento</th>
+                        <th scope="col">Carnet</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($productos as $producto)
+                @foreach ($personas as $persona)
 
                     <tr>
-                        <th scope="row">{!! $producto->id !!}</th>
-                        <td>{!! $producto->codigo !!}</td>
-                        <td>{!! $producto->descripcion !!}</td>
-                        <td>{!! $producto->lote !!}</td>
-                        <td>{!! $producto->vencimiento !!}</td>
+                        <th scope="row">{!! $persona->id !!}</th>
+                        <td>{!! $persona->nombre !!}</td>
+                        <td>{!! $persona->apellido !!}</td>
+                        <td>{!! $persona->fnacimiento !!}</td>
+                        <td>{!! $persona->carnet !!}</td>
                         <td>
-                            <a href="{{ route('articulo.edit', $producto->id) }}" class="btn btn-success">Editar</a>
+                            <a href="{{ route('persona.edit', $persona) }}" class="btn btn-success">Editar</a>
                         </td>
                         <td>
-                            <form class="form-inline" method="POST" action="{{ route('articulo.destroy', $producto) }}">
+                            <form class="form-inline" method="POST" action="{{ route('persona.destroy', $persona) }}">
                                 @csrf @method('DELETE')
                                 <button class="btn btn-warning" type="submit" >Eliminar</button>   
                             </form>

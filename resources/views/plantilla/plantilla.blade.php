@@ -27,6 +27,15 @@
           <a class="nav-link" href="map">Mapa</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('articulo.index') }}">Articulos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('persona.index') }}">Personas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('almacen.index') }}">Almacenes</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul>
@@ -41,7 +50,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="#"> Samuco.com</a>
+      <a href="#"> boliviadd@gmail.com </a>
     </div>
     <!-- Copyright -->
 

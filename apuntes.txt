@@ -1,0 +1,20 @@
+php artisan make:model Flight --factory
+php artisan make:model Flight -f
+
+php artisan make:model Flight --seed
+php artisan make:model Flight -s
+
+php artisan make:model Flight --controller
+php artisan make:model Flight -c
+
+php artisan make:model Flight -mfsc --resource
+
+/////////////////////////////////////////////////////////////////////////////////
+
+php artisan db:seed
+
+php artisan db:seed --class=UserSeeder
+
+php artisan migrate:fresh --seed
+
+/////////////////////////////////////////////////////////////////////////////////

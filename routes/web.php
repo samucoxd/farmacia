@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('inicio.index');
+    return view('index');
 });
 
 Route::get('/nosotros', function () {
@@ -24,3 +24,9 @@ Route::get('/nosotros', function () {
 Route::get('/map', function () {
     return view('map.index');
 });
+
+Route::resource('articulo', ArticuloController::class);
+
+Route::resource('persona', PersonaController::class);
+
+Route::resource('almacen', AlmacenController::class);
