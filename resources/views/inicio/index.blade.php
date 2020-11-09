@@ -17,6 +17,8 @@
                         <th scope="col">Descripcion</th>
                         <th scope="col">Lote</th>
                         <th scope="col">Vencimiento</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Foto</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                     </tr>
@@ -30,6 +32,8 @@
                         <td>{!! $producto->descripcion !!}</td>
                         <td>{!! $producto->lote !!}</td>
                         <td>{!! $producto->vencimiento !!}</td>
+                        <td>{!! $producto->stock !!}</td>
+                        <td><img src="{{ asset('./img/articulo/'.$producto->foto) }}" width="30" height="30"></td>
                         <td>
                             <a href="{{ route('articulo.edit', $producto->id) }}" class="btn btn-success">Editar</a>
                         </td>

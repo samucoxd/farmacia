@@ -19,6 +19,9 @@ class CreatePersonasTable extends Migration
             $table->string('apellido');
             $table->string('fnacimiento');
             $table->string('carnet');
+            $table->string('foto');
+            $table->string('sexo');
+            $table->string('nacionalidad');
             $table->timestamps();
         });
     }

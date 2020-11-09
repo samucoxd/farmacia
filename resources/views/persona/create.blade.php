@@ -5,7 +5,7 @@
 @include('partials.validation-errors')
 
 
-<form method="POST" action="{{ route('persona.store') }}">
+<form enctype="multipart/form-data" method="POST" action="{{ route('persona.store') }}" >
 @include('persona._form', ['btn'=>'Guardar'])
 </form>
 

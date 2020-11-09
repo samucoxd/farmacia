@@ -41,10 +41,21 @@ class PersonaController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'fnacimiento' => 'required',
-            'carnet' => 'required'
+            'carnet' => 'required',
+            'urlfoto' => 'required',
+            'sexo' => 'required',
+            'nacionalidad' => 'required'
         ]);
        
-        Persona::create($request->all());
+        $Persona =new Persona($request->all());
+        if ($request->hasFile('urlfoto')){
+            $file = $request->file("urlfoto");
+            //$nombrearchivo  = str_slug($request->slug).".".$file->getClientOriginalExtension();
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("img/persona/"),$nombrearchivo);
+            $Persona->foto = $nombrearchivo;
+        }
+        $Persona->save();
 
         return redirect()->route('persona.index')
             ->with('success', 'Persona created successfully.');
@@ -85,14 +96,36 @@ class PersonaController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'fnacimiento' => 'required',
-            'carnet' => 'required'
+            'carnet' => 'required',
+            'urlfoto' => 'required',
+            'sexo' => 'required',
+            'nacionalidad' => 'required'
         ]);
-       
-        $persona->update($request->all());
+
+        $Persona =new Persona($request->all());
+        $nombrearchivo = "";
+        if ($request->hasFile('urlfoto')){
+            $file = $request->file("urlfoto");
+            //$nombrearchivo  = str_slug($request->slug).".".$file->getClientOriginalExtension();
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("img/persona/"),$nombrearchivo);
+            $Persona->foto = $nombrearchivo;
+        }
+
+        $Persona->where('id' ,$persona->id)->update([
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'fnacimiento' => $request->fnacimiento,
+            'carnet' => $request->carnet,
+            'foto' => $nombrearchivo,
+            'sexo' => $request->sexo,
+            'nacionalidad' => $request->nacionalidad
+        ]);
+
+        //$persona->update($request->all());
 
         return redirect()->route('persona.index')
             ->with('success', 'Persona Update successfully.');
-        return $persona;
     }
 
     /**

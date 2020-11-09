@@ -19,6 +19,8 @@ class CreateArticulosTable extends Migration
             $table->string('descripcion');
             $table->string('lote');
             $table->string('vencimiento');
+            $table->string('stock');
+            $table->string('foto');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@
 
 @include('partials.validation-errors')
 
-<form method="POST" action="{{ route('articulo.update', $articulo) }}">
+<form method="POST" enctype="multipart/form-data" action="{{ route('articulo.update', $articulo) }}">
     
     @method('PATCH')
     

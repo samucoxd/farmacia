@@ -20,4 +20,14 @@
     <input type="date" class="form-control" name="vencimiento" id="vencimiento" value="{{ old('vencimiento', $articulo->vencimiento) }}">
 </div>
 
+<div class="form-group">
+    <label>Stock</label>
+    <input type="text" class="form-control" name="stock" id="stock" value="{{ old('stock', $articulo->stock) }}">
+</div>
+
+<div class="form-group">
+    <label>Foto</label>
+    <input type="file" class="form-control" name="foto" id="vencimiento"">
+</div>
+
 <input type="submit" name="send" value="{{ $btn }}" class="btn btn-dark btn-block">

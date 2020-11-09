@@ -20,4 +20,20 @@
     <input type="text" class="form-control" name="carnet" id="carnet" value="{{ old('carnet', $persona->carnet) }}">
 </div>
 
+<div class="form-group">
+    <label>foto</label>
+    <input accept="image/*" type="file" class="form-control" name="urlfoto" id="urlfoto">
+</div>
+
+<div class="form-group">
+    <label>Sexo</label>
+    <input type="text" class="form-control" name="sexo" id="sexo" value="{{ old('sexo', $persona->sexo) }}">
+</div>
+
+<div class="form-group">
+    <label>Nacionalidad</label>
+    <input type="text" class="form-control" name="nacionalidad" id="nacionalidad" value="{{ old('nacionalidad', $persona->nacionalidad) }}">
+</div>
+
+
 <input type="submit" name="send" value="{{ $btn }}" class="btn btn-dark btn-block">

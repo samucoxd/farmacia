@@ -17,6 +17,9 @@
                         <th scope="col">Apellido</th>
                         <th scope="col">Fecha Nacimiento</th>
                         <th scope="col">Carnet</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Nacionalidad</th>
+                        <th scope="col">Foto</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                     </tr>
@@ -30,6 +33,9 @@
                         <td>{!! $persona->apellido !!}</td>
                         <td>{!! $persona->fnacimiento !!}</td>
                         <td>{!! $persona->carnet !!}</td>
+                        <td>{!! $persona->sexo !!}</td>
+                        <td>{!! $persona->nacionalidad !!}</td>
+                        <td ><img src="{{ asset('./img/persona/'.$persona->foto) }}" width="30" height="30"></td>
                         <td>
                             <a href="{{ route('persona.edit', $persona) }}" class="btn btn-success">Editar</a>
                         </td>

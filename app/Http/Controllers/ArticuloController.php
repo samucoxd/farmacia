@@ -45,10 +45,20 @@ class ArticuloController extends Controller
             'codigo' => 'required',
             'descripcion' => 'required',
             'lote' => 'required',
-            'vencimiento' => 'required'
+            'vencimiento' => 'required',
+            'stock' => 'required',
+            'foto' => 'required'
         ]);
        
-        Articulo::create($request->all());
+        $Articulo =new Articulo($request->all());
+        if ($request->hasFile('foto')){
+            $file = $request->file("foto");
+            //$nombrearchivo  = str_slug($request->slug).".".$file->getClientOriginalExtension();
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("img/articulo/"),$nombrearchivo);
+            $Articulo->foto = $nombrearchivo;
+        }
+        $Articulo->save();
 
         return redirect()->route('articulo.index')
             ->with('success', 'Articulo created successfully.');
@@ -89,14 +99,34 @@ class ArticuloController extends Controller
             'codigo' => 'required',
             'descripcion' => 'required',
             'lote' => 'required',
-            'vencimiento' => 'required'
+            'vencimiento' => 'required',
+            'stock' => 'required',
+            'foto' => 'required'
+        ]);
+
+        $Articulo =new Articulo($request->all());
+        $nombrearchivo = "";
+        if ($request->hasFile('foto')){
+            $file = $request->file("foto");
+            //$nombrearchivo  = str_slug($request->slug).".".$file->getClientOriginalExtension();
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("img/articulo/"),$nombrearchivo);
+            $Articulo->foto = $nombrearchivo;
+        }
+        //$Articulo->update($request->all());
+        $Articulo->where('id' ,$articulo->id)->update([
+            'codigo' => $request->codigo,
+            'descripcion' => $request->descripcion,
+            'lote' => $request->lote,
+            'vencimiento' => $request->vencimiento,
+            'stock' => $request->stock,
+            'foto' => $nombrearchivo
+            
         ]);
        
-        $articulo->update($request->all());
 
         return redirect()->route('articulo.index')
             ->with('success', 'Project Update successfully.');
-        return $articulo;
     }
 
     /**
