@@ -21,13 +21,35 @@
 </div>
 
 <div class="form-group">
-    <label>Stock</label>
-    <input type="text" class="form-control" name="stock" id="stock" value="{{ old('stock', $articulo->stock) }}">
+    <label>Foto</label>
+    <input type="file" class="form-control" name="foto" id="vencimiento">
 </div>
 
 <div class="form-group">
-    <label>Foto</label>
-    <input type="file" class="form-control" name="foto" id="vencimiento"">
+    <label >Categoria</label>
+    <select class="form-control" name="categoria_id" id="categoria_id">
+        @foreach ($categorias as $categoria)
+            <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+        @endforeach
+    </select>
+</div>
+
+<div class="form-group">
+    <label >Almacen</label>
+    <select class="form-control" name="almacen_id" id="almacen_id">
+        @foreach ($almacenes as $almacen)
+            <option value="{{$almacen->id}}">{{$almacen->nombre}}</option>
+        @endforeach
+    </select>
+</div>
+
+<div class="form-group">
+    <label >Proveedor</label>
+    <select class="form-control" name="proveedor_id" id="proveedor_id">
+        @foreach ($proveedores as $proveedor)
+            <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+        @endforeach
+    </select>
 </div>
 
 <input type="submit" name="send" value="{{ $btn }}" class="btn btn-dark btn-block">

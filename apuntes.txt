@@ -7,7 +7,7 @@ php artisan make:model Flight -s
 php artisan make:model Flight --controller
 php artisan make:model Flight -c
 
-php artisan make:model Flight -mfsc --resource
+php artisan make:model Flight -msc --resource
 
 /////////////////////////////////////////////////////////////////////////////////
 

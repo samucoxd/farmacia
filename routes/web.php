@@ -30,3 +30,15 @@ Route::resource('articulo', ArticuloController::class);
 Route::resource('persona', PersonaController::class);
 
 Route::resource('almacen', AlmacenController::class);
+
+Route::resource('country', CountryController::class);
+
+Route::resource('proveedor', ProveedorController::class);
+
+Route::resource('categoria', CategoriaController::class, ['parameters' => [
+    'categoria' => 'categoria'
+]]);
+
+Route::resource('ingreso', IngresoController::class);
+
+Route::resource('salida', SalidaController::class);

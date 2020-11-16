@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Almacen;
 use App\Models\Articulo;
+use App\Models\Categoria;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -15,12 +18,12 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        $Productos = new Articulo;
-        $Productos = $Productos->all();
-        //dd($Productos);
+        $productos = new Articulo;
+        $productos = Articulo::with('almacen', 'categoria', 'proveedor')->get();
+        //dd($productos);
 
         //return View("inicio.index", compact('Productos'));
-        return View('inicio.index')->with('productos', $Productos);
+        return View('inicio.index', compact('productos'));
     }
 
     /**
@@ -30,7 +33,13 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        return View('inicio.create', ['articulo' => new Articulo]);
+        $proveedores = Proveedor::all();
+        return View('inicio.create', [
+            'articulo' => new Articulo,
+            'almacenes' => Almacen::all(),
+            'categorias' => Categoria::all(),
+            'proveedores' => $proveedores
+            ]);
     }
 
     /**
@@ -41,13 +50,16 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $request->validate([
             'codigo' => 'required',
             'descripcion' => 'required',
             'lote' => 'required',
             'vencimiento' => 'required',
-            'stock' => 'required',
-            'foto' => 'required'
+            'foto' => 'required', 
+            'categoria_id' => 'required',
+            'almacen_id' => 'required',
+            'proveedor_id' => 'required',
         ]);
        
         $Articulo =new Articulo($request->all());
@@ -57,6 +69,7 @@ class ArticuloController extends Controller
             $nombrearchivo  = $file->getClientOriginalName();
             $file->move(public_path("img/articulo/"),$nombrearchivo);
             $Articulo->foto = $nombrearchivo;
+            $Articulo->proveedor_id = $request->proveedor_id;
         }
         $Articulo->save();
 
@@ -83,7 +96,12 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
-        return View('inicio.edit', ['articulo' => $articulo]);
+        $proveedores = Proveedor::all();
+
+        return View('inicio.edit', [
+            'articulo' => $articulo,
+            'proveedores' => $proveedores
+            ]);
     }
 
     /**
@@ -100,11 +118,10 @@ class ArticuloController extends Controller
             'descripcion' => 'required',
             'lote' => 'required',
             'vencimiento' => 'required',
-            'stock' => 'required',
             'foto' => 'required'
         ]);
 
-        $Articulo =new Articulo($request->all());
+        $Articulo = new Articulo($request->all());
         $nombrearchivo = "";
         if ($request->hasFile('foto')){
             $file = $request->file("foto");
@@ -114,14 +131,13 @@ class ArticuloController extends Controller
             $Articulo->foto = $nombrearchivo;
         }
         //$Articulo->update($request->all());
-        $Articulo->where('id' ,$articulo->id)->update([
+        $Articulo->where('id', $articulo->id)->update([
             'codigo' => $request->codigo,
             'descripcion' => $request->descripcion,
             'lote' => $request->lote,
             'vencimiento' => $request->vencimiento,
-            'stock' => $request->stock,
-            'foto' => $nombrearchivo
-            
+            'foto' => $nombrearchivo,
+            'proveedor_id' => $request->proveedor_id
         ]);
        
 

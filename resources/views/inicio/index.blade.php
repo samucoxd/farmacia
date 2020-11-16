@@ -19,6 +19,9 @@
                         <th scope="col">Vencimiento</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Foto</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Almacen</th>
+                        <th scope="col">Proveedor</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                     </tr>
@@ -34,6 +37,9 @@
                         <td>{!! $producto->vencimiento !!}</td>
                         <td>{!! $producto->stock !!}</td>
                         <td><img src="{{ asset('./img/articulo/'.$producto->foto) }}" width="30" height="30"></td>
+                        <td>{{ $producto->categoria->nombre }}</td>
+                        <td>{{ $producto->almacen->nombre }}</td>
+                        <td>{{ $producto->proveedor->nombre }}</td>
                         <td>
                             <a href="{{ route('articulo.edit', $producto->id) }}" class="btn btn-success">Editar</a>
                         </td>
@@ -43,6 +49,7 @@
                                 <button class="btn btn-warning" type="submit" >Eliminar</button>   
                             </form>
                         </td>
+
                     </tr>
                 @endforeach    
                 </tbody>
