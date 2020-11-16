@@ -36,7 +36,19 @@
           <a class="nav-link" href="{{ route('almacen.index') }}">Almacenes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="{{ route('country.index') }}">Pais</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('proveedor.index') }}">Proveedor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('categoria.index') }}">Categoria</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('ingreso.index') }}">Ingreso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('salida.index') }}">Salida</a>
         </li>
       </ul>
     </div>
